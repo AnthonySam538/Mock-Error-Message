@@ -12,6 +12,7 @@
 //Compile this file:
 //mcs -target:library -r:System.Windows.Forms.dll -r:System.Drawing.dll -out:MockErrorMessageForm.dll MockErrorMessageForm.cs
 
+using System;
 using System.Windows.Forms;
 using System.Drawing;
 
@@ -22,7 +23,7 @@ public class MockErrorMessageForm : Form
   private static Button leftButton = new Button();
   private static Button rightButton = new Button();
 
-  public MockErrorMessageForm()
+  public MockErrorMessageForm() //this is the constructor
   {
     // Set up the form/window
     Text = "Warning";
@@ -31,8 +32,8 @@ public class MockErrorMessageForm : Form
 
     // Initialize Controls
     text.Text = "Bro you just posted cringe!\nYou are going to lose subscriber!";
-    text.AutoSize = true;
-    text.Location = new Point((Width-text.Width)/2, text.Height);
+    text.Width = Width;
+    text.Top = text.Height;
     text.TextAlign = ContentAlignment.MiddleCenter;
 
     leftButton.Text = "OK";
@@ -47,5 +48,15 @@ public class MockErrorMessageForm : Form
     Controls.Add(text);
     Controls.Add(leftButton);
     Controls.Add(rightButton);
+    
+    // Tell the events which method to call (The method is defined below)
+    leftButton.Click += new EventHandler(exit);
+    rightButton.Click += new EventHandler(exit);
+  }
+  
+  protected void exit(Object sender, EventArgs events)
+  {
+    System.Console.WriteLine("You clicked on the Exit button. This program will now end.");
+    Close();
   }
 }
