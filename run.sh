@@ -6,7 +6,7 @@
 
 #This is a bash shell script to be used for compiling, linking, and executing the C# (.cs) files.
 #Execute this file by navigating the terminal window to the folder where this file resides, and then enter either of the commands below:
-#  sh run.sh OR ./build.sh
+#  sh run.sh OR ./run.sh
 
 echo "First, remove any potentially outdated .dll or .exe files using the keyword rm"
 rm *.dll
